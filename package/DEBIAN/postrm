@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    remove|purge)
+        if command -v udevadm >/dev/null 2>&1; then
+            udevadm control --reload-rules || true
+            udevadm trigger --subsystem-match=usb || true
+        fi
+
+        if command -v systemctl >/dev/null 2>&1; then
+            systemctl try-restart fprintd.service >/dev/null 2>&1 || true
+        fi
+        ;;
+esac
+
+exit 0
