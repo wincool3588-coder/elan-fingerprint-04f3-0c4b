@@ -1,0 +1,14 @@
+# Local machine backups and audit material
+working-config.txt
+ROLLBACK.txt
+PAM-ROLLBACK.txt
+pam-before/
+
+# Build directories
+build/
+*.build
+*.changes
+
+# Editor/OS files
+*~
+.DS_Store
