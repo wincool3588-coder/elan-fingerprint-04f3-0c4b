@@ -1,5 +1,7 @@
 # Third-party notices
 
+[English](THIRD_PARTY_NOTICES.md) | [Русский](THIRD_PARTY_NOTICES.ru.md)
+
 This repository documents and packages third-party components required to operate an ELAN `04f3:0c4b` fingerprint reader with Ubuntu's libfprint TOD stack.
 
 ## Scope of the repository license
