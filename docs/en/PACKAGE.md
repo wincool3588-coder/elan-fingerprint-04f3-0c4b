@@ -79,7 +79,7 @@ See [`../../THIRD_PARTY_NOTICES.md`](../../THIRD_PARTY_NOTICES.md) for the repos
 The `1.0.2` package has:
 
 ```text
-b287d4e3f9ded1ffed7f69e144919bad5e929d205ccc241b42acfd40e51b4504  elan-fingerprint-04f3-0c4b_1.0.2_amd64.deb
+daad05b78e87f3e5c8ec4dfc77180933376135831c96588d6767406cfff78c72  elan-fingerprint-04f3-0c4b_1.0.2_amd64.deb
 ```
 
 For historical reference, the previously published package was `elan-fingerprint-04f3-0c4b-local_1.0.0+local1_amd64.deb` with SHA256 `9893258dfeb04259312fccb465ac372440e2e972787966794e63b87c9c520b44`.
