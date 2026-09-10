@@ -1,8 +1,8 @@
-# Поддержка ELAN 04f3:0c4b в Ubuntu 26.04
+# Поддержка ELAN 04f3:0c4b в Ubuntu 26.04 LTS
 
 [English](README.md) | [Русский](README.ru.md)
 
-Локальный Debian-пакет и документация для USB-сканера отпечатков пальцев **ELAN 04f3:0c4b**, проверенные на **Lenovo ThinkBook 14 G2 ARE** под **Ubuntu 26.04 Resolute**.
+Локальный Debian-пакет и документация для USB-сканера отпечатков пальцев **ELAN 04f3:0c4b**, проверенные на **Lenovo ThinkBook 14 G2 ARE** под **Ubuntu 26.04 LTS**.
 
 > [!IMPORTANT]
 > Это не официальный пакет Ubuntu, Lenovo или ELAN. В состав `.deb` входят сторонний проприетарный бинарный модуль ELAN TOD и изолированная библиотека совместимости `libcrypto.so.1.1`. См. [`THIRD_PARTY_NOTICES.ru.md`](THIRD_PARTY_NOTICES.ru.md).
@@ -11,7 +11,7 @@
 
 - Оборудование: Lenovo ThinkBook 14 G2 ARE
 - USB ID: `04f3:0c4b Elan Microelectronics Corp. ELAN:Fingerprint`
-- Ubuntu: 26.04 Resolute
+- Ubuntu: 26.04 LTS
 - Ядро: `7.0.0-31-generic`
 - `fprintd`: `1.94.5-4`
 - `libfprint-2-2`: `1:1.95.1+tod1-0ubuntu2`
