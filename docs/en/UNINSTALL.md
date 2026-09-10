@@ -38,22 +38,26 @@ If you only want to disable fingerprint authentication, removing enrollment is o
 
 ## 4. Purge the package
 
+For version `1.0.2` and later:
+
 ```bash
-sudo apt purge elan-fingerprint-04f3-0c4b-local
+sudo apt purge elan-fingerprint-04f3-0c4b
 ```
 
 Alternative without purge:
 
 ```bash
-sudo dpkg -r elan-fingerprint-04f3-0c4b-local
+sudo dpkg -r elan-fingerprint-04f3-0c4b
 ```
 
 `purge` is preferred for complete removal because the udev rule is a conffile.
 
+If you are still using the historical `1.0.0+local1` package, its package name is `elan-fingerprint-04f3-0c4b-local`.
+
 ## 5. Verify the result
 
 ```bash
-dpkg-query -W elan-fingerprint-04f3-0c4b-local
+dpkg-query -W elan-fingerprint-04f3-0c4b
 ls -la /usr/lib/x86_64-linux-gnu/libfprint-2/tod-1/
 test ! -e /etc/udev/rules.d/60-libfprint-2-tod1-elan.rules && echo 'udev rule removed'
 test ! -e /opt/elan-fingerprint/driver/libfprint-2-tod1-elan.so && echo 'driver removed'
@@ -86,7 +90,7 @@ working password
  -> verify sudo with password
  -> verify lock screen with password
  -> optionally delete enrollment
- -> apt purge elan-fingerprint-04f3-0c4b-local
+ -> apt purge elan-fingerprint-04f3-0c4b
  -> inspect leftovers
  -> separately decide what to do with local backup files
 ```
