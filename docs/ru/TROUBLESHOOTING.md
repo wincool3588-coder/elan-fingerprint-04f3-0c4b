@@ -8,21 +8,21 @@
 lsusb | grep -i '04f3:0c4b'
 ```
 
-## Статус fprintd и journal
+## Статус fprintd и журнал
 
 ```bash
 systemctl --no-pager --full status fprintd
 journalctl -u fprintd -b --no-pager
 ```
 
-## TOD module
+## Модуль TOD
 
 ```bash
 ls -la /usr/lib/x86_64-linux-gnu/libfprint-2/tod-1/
 readlink -f /usr/lib/x86_64-linux-gnu/libfprint-2/tod-1/libfprint-2-tod1-elan.so
 ```
 
-Ожидаемый target:
+Ожидаемый целевой файл:
 
 ```text
 /opt/elan-fingerprint/driver/libfprint-2-tod1-elan.so
@@ -36,17 +36,17 @@ patchelf --print-rpath /opt/elan-fingerprint/driver/libfprint-2-tod1-elan.so
 
 Ожидается `/opt/elan-fingerprint/lib`.
 
-## Dependencies
+## Зависимости
 
 ```bash
 ldd /opt/elan-fingerprint/driver/libfprint-2-tod1-elan.so
 ```
 
-`not found` быть не должно. В частности, `libcrypto.so.1.1` должен разрешаться в `/opt/elan-fingerprint/lib/libcrypto.so.1.1`.
+Строк `not found` быть не должно. В частности, `libcrypto.so.1.1` должна разрешаться в `/opt/elan-fingerprint/lib/libcrypto.so.1.1`.
 
-Одновременное наличие системного `libcrypto.so.3` через транзитивные dependencies само по себе не является ошибкой.
+Одновременное наличие системной `libcrypto.so.3` через транзитивные зависимости само по себе не является ошибкой.
 
-## Проверить реально загруженные библиотеки
+## Проверить фактически загруженные библиотеки
 
 Когда `fprintd` работает:
 
@@ -57,32 +57,32 @@ sudo grep -E 'elan-fingerprint|libcrypto\.so\.1\.1' "/proc/$pid/maps"
 
 Ожидаются пути из `/opt/elan-fingerprint`.
 
-## Enrollment и verify
+## Регистрация и проверка отпечатка
 
 ```bash
 fprintd-list "$USER"
 fprintd-verify
 ```
 
-Рабочее устройство называется `ELAN Fingerprint Sensor (press)`. Если вместо него используется stock/open-source path `ElanTech Fingerprint Sensor`, проверьте TOD symlink, udev rule и journal.
+Рабочее устройство называется `ELAN Fingerprint Sensor (press)`. Если вместо него используется стандартный открытый драйвер с устройством `ElanTech Fingerprint Sensor`, проверьте символическую ссылку TOD, правило udev и журнал.
 
-## PAM recovery
+## Восстановление конфигурации PAM
 
-Если fingerprint authentication ведёт себя неправильно, но `sudo` ещё доступен:
+Если аутентификация по отпечатку пальца работает неправильно, но `sudo` ещё доступен:
 
 ```bash
 sudo pam-auth-update
 ```
 
-Отключите **Fingerprint authentication**, затем:
+Отключите **Fingerprint authentication**, затем выполните:
 
 ```bash
 sudo -k
 sudo -v
 ```
 
-Если ранее были сохранены PAM backups, не восстанавливайте их механически после других изменений системы: сначала сравните backup с текущими PAM files.
+Если ранее были сохранены резервные копии PAM, не восстанавливайте их механически после других изменений системы: сначала сравните резервную копию с текущими файлами PAM.
 
 ## LED
 
-Отсутствие мигания LED не означает, что fingerprint sensor не работает. LED control не является частью текущего package.
+Отсутствие мигания LED не означает, что сканер отпечатков не работает. Управление LED не входит в текущий пакет.
