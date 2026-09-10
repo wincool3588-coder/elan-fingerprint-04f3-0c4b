@@ -129,3 +129,11 @@ TOD driver обеспечивает fingerprint scanning, но LED power button 
 - [`docs/UNINSTALL.md`](docs/UNINSTALL.md) — безопасное полное удаление.
 - [`docs/TROUBLESHOOTING.md`](docs/TROUBLESHOOTING.md) — диагностика.
 - [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) — происхождение и лицензирование сторонних компонентов.
+
+## Лицензия
+
+Материалы, созданные специально для этого репозитория — документация, packaging metadata, maintainer scripts и другой оригинальный код проекта — предоставляются по **Apache License 2.0**. См. [`LICENSE`](LICENSE).
+
+Это **не означает**, что Apache-2.0 распространяется на сторонние бинарные компоненты. В частности, proprietary ELAN TOD driver и `libcrypto.so.1.1` сохраняют собственные применимые условия лицензирования и отдельно описаны в [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+
+До подтверждения прав на перераспространение ELAN TOD binary наличие копии бинарника или пакета в этом репозитории не следует трактовать как предоставление каких-либо прав на этот компонент со стороны автора репозитория.
