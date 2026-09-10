@@ -1,0 +1,34 @@
+Component: OpenSSL libcrypto.so.1.1
+Bundled path: /opt/elan-fingerprint/lib/libcrypto.so.1.1
+Bundled file SHA256: bf99926de2ce739d3fdccc4a551d97d64aac6e968589aaad9dc4ac8d143b519a
+
+Origin distribution: Ubuntu 20.04 LTS (Focal)
+Architecture: amd64
+Binary package: libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
+Binary package SHA256: 7cf39d70a639017d1dd7c8d36daa2258063608688e449fddf40ffdd46f992a78
+Source package: openssl 1.1.1f-1ubuntu2.24
+Upstream version: OpenSSL 1.1.1f
+
+Ubuntu source package files:
+- openssl_1.1.1f.orig.tar.gz
+  SHA256: 186c6bfe6ecfba7a5b48c47f8a1673d0f3b0e5ba2e25602dd23b629975da3f35
+- openssl_1.1.1f-1ubuntu2.24.debian.tar.xz
+  SHA256: 66b1a31642710d386b6896e2e7bea0bd3138d94277c894f871ccaa52bad07c04
+- openssl_1.1.1f-1ubuntu2.24.dsc
+  SHA256: f9b93b532511ee24b3e0160c0c7549d3e3123c9e2d9c5c6da0e6de2f582eccd3
+
+Official Ubuntu source package information:
+https://launchpad.net/ubuntu/+source/openssl/1.1.1f-1ubuntu2.24
+
+Upstream OpenSSL 1.1.1f license source:
+https://github.com/openssl/openssl/blob/OpenSSL_1_1_1f/LICENSE
+
+License: OpenSSL License and Original SSLeay License (both apply).
+The complete upstream license text is shipped next to this file as LICENSE.
+
+Required acknowledgements retained for redistribution:
+This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/)
+This product includes cryptographic software written by Eric Young (eay@cryptsoft.com).
+
+Provenance verification:
+The SHA256 of the bundled libcrypto.so.1.1 was independently checked after extracting it from the named Ubuntu binary package and matched the value recorded above.
