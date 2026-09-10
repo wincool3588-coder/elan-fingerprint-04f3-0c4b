@@ -1,8 +1,8 @@
-# ELAN 04f3:0c4b fingerprint support for Ubuntu 26.04
+# ELAN 04f3:0c4b fingerprint support for Ubuntu 26.04 LTS
 
 [English](README.md) | [Русский](README.ru.md)
 
-Local Debian package and documentation for the **ELAN 04f3:0c4b** USB fingerprint reader, tested on a **Lenovo ThinkBook 14 G2 ARE** running **Ubuntu 26.04 Resolute**.
+Local Debian package and documentation for the **ELAN 04f3:0c4b** USB fingerprint reader, tested on a **Lenovo ThinkBook 14 G2 ARE** running **Ubuntu 26.04 LTS**.
 
 > [!IMPORTANT]
 > This is not an official Ubuntu, Lenovo, or ELAN package. The `.deb` contains a third-party proprietary ELAN TOD binary and a private compatibility copy of `libcrypto.so.1.1`. See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
@@ -11,7 +11,7 @@ Local Debian package and documentation for the **ELAN 04f3:0c4b** USB fingerprin
 
 - Hardware: Lenovo ThinkBook 14 G2 ARE
 - USB ID: `04f3:0c4b Elan Microelectronics Corp. ELAN:Fingerprint`
-- Ubuntu: 26.04 Resolute
+- Ubuntu: 26.04 LTS
 - Kernel: `7.0.0-31-generic`
 - `fprintd`: `1.94.5-4`
 - `libfprint-2-2`: `1:1.95.1+tod1-0ubuntu2`
