@@ -52,7 +52,7 @@ sha256sum elan-fingerprint-04f3-0c4b_1.0.2_amd64.deb
 Expected:
 
 ```text
-daad05b78e87f3e5c8ec4dfc77180933376135831c96588d6767406cfff78c72
+7550ff3373fa5b1c3ef9f62e51fc7a6ab63c18bd59ec2c8fecbff3b69ee64fe9
 ```
 
 Install the package:
