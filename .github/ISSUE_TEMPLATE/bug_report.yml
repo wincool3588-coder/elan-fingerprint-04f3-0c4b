@@ -32,7 +32,7 @@ body:
     id: ubuntu
     attributes:
       label: Ubuntu version
-      placeholder: Ubuntu 26.04 Resolute
+      placeholder: Ubuntu 26.04 LTS
     validations:
       required: true
 
