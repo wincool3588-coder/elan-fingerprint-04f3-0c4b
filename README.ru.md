@@ -5,7 +5,7 @@
 Локальный Debian-пакет и документация для USB-сканера отпечатков пальцев **ELAN 04f3:0c4b**, проверенные на **Lenovo ThinkBook 14 G2 ARE** под **Ubuntu 26.04 Resolute**.
 
 > [!IMPORTANT]
-> Это не официальный пакет Ubuntu, Lenovo или ELAN. В состав `.deb` входят сторонний проприетарный бинарный модуль ELAN TOD и приватная библиотека совместимости `libcrypto.so.1.1`. См. [`THIRD_PARTY_NOTICES.ru.md`](THIRD_PARTY_NOTICES.ru.md).
+> Это не официальный пакет Ubuntu, Lenovo или ELAN. В состав `.deb` входят сторонний проприетарный бинарный модуль ELAN TOD и изолированная библиотека совместимости `libcrypto.so.1.1`. См. [`THIRD_PARTY_NOTICES.ru.md`](THIRD_PARTY_NOTICES.ru.md).
 
 ## Проверенная конфигурация
 
@@ -29,7 +29,7 @@ ELAN USB 04f3:0c4b
   -> libfprint TOD
   -> /opt/elan-fingerprint/driver/libfprint-2-tod1-elan.so
   -> RUNPATH=/opt/elan-fingerprint/lib
-  -> приватная libcrypto.so.1.1
+  -> изолированная libcrypto.so.1.1
   -> fprintd -> pam_fprintd -> sudo / экран блокировки / вход в систему
 ```
 
@@ -61,7 +61,7 @@ sha256sum elan-fingerprint-04f3-0c4b-local_1.0.0+local1_amd64.deb
 sudo dpkg -i ./elan-fingerprint-04f3-0c4b-local_1.0.0+local1_amd64.deb
 ```
 
-Пакет устанавливает драйвер TOD, приватную `libcrypto.so.1.1`, символическую ссылку на драйвер TOD и правило udev. **Конфигурацию PAM пакет не изменяет.**
+Пакет устанавливает драйвер TOD, изолированную `libcrypto.so.1.1`, символическую ссылку на драйвер TOD и правило udev. **Конфигурацию PAM пакет не изменяет.**
 
 ## Проверка
 
@@ -119,7 +119,7 @@ sudo apt purge elan-fingerprint-04f3-0c4b-local
 
 - устанавливать устаревший `libssl1.1` глобально только ради этого драйвера;
 - создавать ссылку `libcrypto.so.1.1 -> libcrypto.so.3`;
-- добавлять приватную библиотеку OpenSSL в `/etc/ld.so.conf*`;
+- добавлять изолированную библиотеку OpenSSL из этого пакета в `/etc/ld.so.conf*`;
 - задавать глобальный `LD_LIBRARY_PATH`;
 - подменять выпуск Ubuntu ради старого PPA;
 - удалять системный стек libfprint;
