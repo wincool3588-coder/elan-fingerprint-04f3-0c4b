@@ -1,11 +1,13 @@
 # ELAN 04f3:0c4b fingerprint support for Ubuntu 26.04
 
-Локальный Debian-пакет и документация для USB fingerprint reader **ELAN 04f3:0c4b**, проверенные на **Lenovo ThinkBook 14 G2 ARE** под **Ubuntu 26.04 Resolute**.
+[English](README.md) | [Русский](README.ru.md)
+
+Local Debian package and documentation for the **ELAN 04f3:0c4b** USB fingerprint reader, tested on a **Lenovo ThinkBook 14 G2 ARE** running **Ubuntu 26.04 Resolute**.
 
 > [!IMPORTANT]
-> Это не официальный пакет Ubuntu, Lenovo или ELAN. В состав `.deb` входит сторонний proprietary ELAN TOD blob и приватная compatibility-библиотека `libcrypto.so.1.1`. См. `THIRD_PARTY_NOTICES.md`.
+> This is not an official Ubuntu, Lenovo, or ELAN package. The `.deb` contains a third-party proprietary ELAN TOD binary and a private compatibility copy of `libcrypto.so.1.1`. See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
 
-## Проверенная конфигурация
+## Tested configuration
 
 - Hardware: Lenovo ThinkBook 14 G2 ARE
 - USB ID: `04f3:0c4b Elan Microelectronics Corp. ELAN:Fingerprint`
@@ -17,9 +19,9 @@
 - `libpam-fprintd`: `1.94.5-4`
 - Local package: `elan-fingerprint-04f3-0c4b-local 1.0.0+local1`
 
-Успешно проверены enrollment, `fprintd-verify`, `sudo`, GNOME lock screen, graphical login и password fallback.
+Enrollment, `fprintd-verify`, `sudo`, GNOME lock screen, graphical login, and password fallback were tested successfully.
 
-## Архитектура
+## Architecture
 
 ```text
 ELAN USB 04f3:0c4b
@@ -31,37 +33,37 @@ ELAN USB 04f3:0c4b
   -> fprintd -> pam_fprintd -> sudo / lock screen / login
 ```
 
-Старый OpenSSL **не устанавливается глобально**. Не создаётся `libcrypto.so.1.1 -> libcrypto.so.3`, не меняются `ld.so.conf`, `ldconfig` и глобальный `LD_LIBRARY_PATH`.
+The legacy OpenSSL library is **not installed globally**. This project does not create `libcrypto.so.1.1 -> libcrypto.so.3`, modify `ld.so.conf`, run global `ldconfig` changes, or set a global `LD_LIBRARY_PATH`.
 
-## Установка
+## Installation
 
-Проверьте устройство:
+Check that the device is present:
 
 ```bash
 lsusb | grep -i '04f3:0c4b'
 ```
 
-Проверьте SHA256 скачанного `.deb`:
+Check the downloaded `.deb` SHA256:
 
 ```bash
 sha256sum elan-fingerprint-04f3-0c4b-local_1.0.0+local1_amd64.deb
 ```
 
-Ожидается:
+Expected:
 
 ```text
 9893258dfeb04259312fccb465ac372440e2e972787966794e63b87c9c520b44
 ```
 
-Установка:
+Install the package:
 
 ```bash
 sudo dpkg -i ./elan-fingerprint-04f3-0c4b-local_1.0.0+local1_amd64.deb
 ```
 
-Пакет устанавливает TOD driver, private `libcrypto.so.1.1`, TOD symlink и udev rule. **PAM пакет не изменяет.**
+The package installs the TOD driver, private `libcrypto.so.1.1`, TOD symlink, and udev rule. **It does not modify PAM configuration.**
 
-## Проверка
+## Verification
 
 ```bash
 patchelf --print-rpath /opt/elan-fingerprint/driver/libfprint-2-tod1-elan.so
@@ -71,9 +73,9 @@ fprintd-list "$USER"
 fprintd-verify
 ```
 
-Рабочий sensor определяется как `ELAN Fingerprint Sensor (press)`, а verify заканчивается `Verify result: verify-match (done)`.
+A working sensor is detected as `ELAN Fingerprint Sensor (press)`, and verification ends with `Verify result: verify-match (done)`.
 
-Если enrollment отсутствует:
+If no enrollment exists:
 
 ```bash
 fprintd-enroll -f right-index-finger "$USER"
@@ -81,59 +83,61 @@ fprintd-enroll -f right-index-finger "$USER"
 
 ## PAM
 
-Перед включением fingerprint убедитесь, что обычный пароль известен и работает:
+Before enabling fingerprint authentication, make sure the normal password is known and works:
 
 ```bash
 sudo pam-auth-update
 ```
 
-Включите **Fingerprint authentication**, сохранив существующие password methods. Затем сначала проверьте fingerprint через `sudo -k; sudo -v`, а отдельным тестом дождитесь fingerprint timeout и убедитесь, что password fallback работает. Только после этого тестируйте lock screen и logout/login.
+Enable **Fingerprint authentication** while keeping the existing password methods enabled. First test fingerprint authentication with `sudo -k; sudo -v`. Then perform a separate test where fingerprint authentication times out and confirm that password fallback still works. Only after that should you test the lock screen and logout/login flow.
 
-## Правильное полное удаление
+## Safe complete removal
 
-**Не удаляйте driver первым, если PAM всё ещё ожидает fingerprint.**
+**Do not remove the driver first while PAM still expects fingerprint authentication.**
 
-1. Убедитесь, что знаете рабочий пароль.
-2. `sudo pam-auth-update`.
-3. Отключите **Fingerprint authentication**.
-4. Выполните `sudo -k && sudo -v` и подтвердите вход паролем.
-5. Желательно проверить lock screen с паролем.
-6. При полном отказе от биометрии, пока driver ещё работает, можно выполнить `fprintd-delete "$USER"`.
-7. Удалите package:
+1. Make sure you know a working password.
+2. Run `sudo pam-auth-update`.
+3. Disable **Fingerprint authentication**.
+4. Run `sudo -k && sudo -v` and confirm password authentication works.
+5. Preferably verify the lock screen with a password as well.
+6. If you are removing biometrics completely, while the driver still works you may run `fprintd-delete "$USER"`.
+7. Purge the package:
 
 ```bash
 sudo apt purge elan-fingerprint-04f3-0c4b-local
 ```
 
-8. Проверьте package-owned files. Локальные backup-файлы в `/opt/elan-fingerprint/docs` могут остаться, поскольку package ими не владеет. Не удаляйте весь `/opt/elan-fingerprint` вслепую.
+8. Check package-owned files. Local backup files under `/opt/elan-fingerprint/docs` may remain because the package does not own them. Do not remove the entire `/opt/elan-fingerprint` tree blindly.
 
-Полная процедура: [`docs/UNINSTALL.md`](docs/UNINSTALL.md).
+Full procedure: [`docs/en/UNINSTALL.md`](docs/en/UNINSTALL.md).
 
 ## LED
 
-TOD driver обеспечивает fingerprint scanning, но LED power button может не мигать как в Windows. LED helper намеренно не включён в package и рассматривается отдельно.
+The TOD driver provides fingerprint scanning, but the power-button LED may not blink as it does in Windows. LED support is intentionally not part of this package and is tracked separately.
 
-## Не делать
+## Do not
 
-- не устанавливать старый `libssl1.1` глобально ради driver;
-- не создавать `libcrypto.so.1.1 -> libcrypto.so.3`;
-- не добавлять private OpenSSL в `/etc/ld.so.conf*`;
-- не задавать глобальный `LD_LIBRARY_PATH`;
-- не подменять Ubuntu suite для старого PPA;
-- не удалять системный libfprint;
-- не удалять driver до проверки password authentication.
+- install legacy `libssl1.1` globally just for this driver;
+- create `libcrypto.so.1.1 -> libcrypto.so.3`;
+- add the private OpenSSL library to `/etc/ld.so.conf*`;
+- set a global `LD_LIBRARY_PATH`;
+- replace the Ubuntu suite for an old PPA;
+- remove the system libfprint stack;
+- remove the driver before verifying password authentication.
 
-## Документация
+## Documentation
 
-- [`docs/PACKAGE.md`](docs/PACKAGE.md) — устройство package и проверки.
-- [`docs/UNINSTALL.md`](docs/UNINSTALL.md) — безопасное полное удаление.
-- [`docs/TROUBLESHOOTING.md`](docs/TROUBLESHOOTING.md) — диагностика.
-- [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) — происхождение и лицензирование сторонних компонентов.
+- [`docs/en/PACKAGE.md`](docs/en/PACKAGE.md) — package layout and validation.
+- [`docs/en/UNINSTALL.md`](docs/en/UNINSTALL.md) — safe complete removal.
+- [`docs/en/TROUBLESHOOTING.md`](docs/en/TROUBLESHOOTING.md) — diagnostics and recovery.
+- [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) — origin and licensing status of third-party components.
 
-## Лицензия
+Russian versions are available under [`README.ru.md`](README.ru.md), [`docs/ru/`](docs/ru/), and [`THIRD_PARTY_NOTICES.ru.md`](THIRD_PARTY_NOTICES.ru.md).
 
-Материалы, созданные специально для этого репозитория — документация, packaging metadata, maintainer scripts и другой оригинальный код проекта — предоставляются по **Apache License 2.0**. См. [`LICENSE`](LICENSE).
+## License
 
-Это **не означает**, что Apache-2.0 распространяется на сторонние бинарные компоненты. В частности, proprietary ELAN TOD driver и `libcrypto.so.1.1` сохраняют собственные применимые условия лицензирования и отдельно описаны в [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+Material authored specifically for this repository — including original documentation, packaging metadata, maintainer scripts, and other original project code — is provided under the **Apache License 2.0**. See [`LICENSE`](LICENSE).
 
-До подтверждения прав на перераспространение ELAN TOD binary наличие копии бинарника или пакета в этом репозитории не следует трактовать как предоставление каких-либо прав на этот компонент со стороны автора репозитория.
+This does **not** mean Apache-2.0 applies to third-party binary components. In particular, the proprietary ELAN TOD driver and `libcrypto.so.1.1` remain subject to their own applicable licensing terms and are described separately in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+
+Until redistribution rights for the ELAN TOD binary are confirmed, the presence of a copy of the binary or package in this repository must not be interpreted as a grant of rights to that component by the repository author.
