@@ -45,9 +45,9 @@ body:
   - type: input
     id: package
     attributes:
-      label: Local package version
-      description: Installed version of `elan-fingerprint-04f3-0c4b-local`.
-      placeholder: 1.0.0+local1
+      label: Package version
+      description: Installed version of `elan-fingerprint-04f3-0c4b`.
+      placeholder: 1.0.2
     validations:
       required: true
 
