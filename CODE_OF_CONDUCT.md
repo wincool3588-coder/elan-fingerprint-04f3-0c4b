@@ -1,5 +1,7 @@
 # Code of Conduct
 
+[Русская версия](CODE_OF_CONDUCT.ru.md)
+
 ## Our standard
 
 Participation in this project should be professional, respectful, and focused on improving the software and documentation.
