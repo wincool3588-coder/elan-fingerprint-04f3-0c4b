@@ -1,0 +1,63 @@
+name: Feature request
+description: Propose an improvement to packaging, documentation, diagnostics, or supported workflows
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please describe the problem or use case first, then the proposed improvement.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What limitation or recurring difficulty are you trying to address?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Describe the behavior or documentation change you would like to see.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Optional. Describe workarounds or other approaches you considered.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Documentation
+        - Compatibility
+        - Packaging
+        - Installation or uninstall
+        - Troubleshooting or diagnostics
+        - Authentication workflow
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: binaries
+    attributes:
+      label: Third-party components
+      options:
+        - label: This request does not assume redistribution of new proprietary or third-party binary components without license review.
+          required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues for a similar request.
+          required: true

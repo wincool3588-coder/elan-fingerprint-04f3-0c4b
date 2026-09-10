@@ -1,0 +1,100 @@
+name: Bug report
+description: Report a reproducible problem with installation, fingerprint operation, or package behavior
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem. Do not include passwords, fingerprints, credentials, or other sensitive personal data.
+        Security vulnerabilities must be reported privately according to SECURITY.md.
+
+  - type: input
+    id: device
+    attributes:
+      label: Device model
+      description: Laptop or device manufacturer and exact model.
+      placeholder: Lenovo ThinkBook 14 G2 ARE
+    validations:
+      required: true
+
+  - type: input
+    id: usb
+    attributes:
+      label: Fingerprint reader USB ID
+      description: Paste the relevant line from `lsusb`.
+      placeholder: "04f3:0c4b Elan Microelectronics Corp. ELAN:Fingerprint"
+    validations:
+      required: true
+
+  - type: input
+    id: ubuntu
+    attributes:
+      label: Ubuntu version
+      placeholder: Ubuntu 26.04 Resolute
+    validations:
+      required: true
+
+  - type: input
+    id: kernel
+    attributes:
+      label: Kernel version
+      description: Output of `uname -r`.
+      placeholder: 7.0.0-31-generic
+    validations:
+      required: true
+
+  - type: textarea
+    id: packages
+    attributes:
+      label: Relevant package versions
+      description: Include `fprintd`, `libfprint-2-2`, `libfprint-2-tod1`, `libpam-fprintd`, and `elan-fingerprint-04f3-0c4b-local` where applicable.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Give the smallest reliable sequence that reproduces the problem.
+      placeholder: |
+        1. Install ...
+        2. Run ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: Paste relevant command output or journal excerpts. Remove personal or sensitive information first.
+      render: text
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues for the same problem.
+          required: true
+        - label: This is not a security vulnerability requiring private disclosure.
+          required: true
+        - label: I removed personal and sensitive information from logs and output.
+          required: true

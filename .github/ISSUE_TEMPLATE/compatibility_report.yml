@@ -1,0 +1,92 @@
+name: Compatibility report
+description: Share test results for another laptop, device revision, kernel, or Ubuntu release
+title: "[Compatibility]: "
+labels:
+  - compatibility
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for compatibility results, including partial or failed results. Detailed negative results are useful too.
+
+  - type: input
+    id: device
+    attributes:
+      label: Device model
+      placeholder: Lenovo ThinkBook 14 G2 ARE
+    validations:
+      required: true
+
+  - type: input
+    id: usb
+    attributes:
+      label: Fingerprint reader USB ID
+      description: Paste the relevant `lsusb` line.
+      placeholder: "04f3:0c4b Elan Microelectronics Corp. ELAN:Fingerprint"
+    validations:
+      required: true
+
+  - type: input
+    id: ubuntu
+    attributes:
+      label: Ubuntu version
+      placeholder: Ubuntu 26.04 Resolute
+    validations:
+      required: true
+
+  - type: input
+    id: kernel
+    attributes:
+      label: Kernel version
+      description: Output of `uname -r`.
+    validations:
+      required: true
+
+  - type: input
+    id: package
+    attributes:
+      label: Local package version
+      description: Installed version of `elan-fingerprint-04f3-0c4b-local`.
+      placeholder: 1.0.0+local1
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: results
+    attributes:
+      label: Working checks
+      description: Select every check that succeeded.
+      options:
+        - label: Enrollment with `fprintd-enroll`
+        - label: Verification with `fprintd-verify`
+        - label: `sudo` authentication
+        - label: GNOME lock-screen authentication
+        - label: Graphical login authentication
+        - label: Password fallback remains available
+
+  - type: textarea
+    id: failures
+    attributes:
+      label: Failed or untested checks
+      description: Describe any failure and state which checks were not tested.
+
+  - type: textarea
+    id: versions
+    attributes:
+      label: Relevant package versions
+      description: Include `fprintd`, `libfprint-2-2`, `libfprint-2-tod1`, and `libpam-fprintd` if available.
+      render: text
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+      description: Firmware/BIOS version, desktop environment, diagnostics, quirks, or anything else that may affect compatibility.
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Checklist
+      options:
+        - label: I removed personal and sensitive information from logs and output.
+          required: true
