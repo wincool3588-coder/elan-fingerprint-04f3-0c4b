@@ -1,13 +1,14 @@
-Package: elan-fingerprint-04f3-0c4b-local
-Version: 1.0.0+local1
+Package: elan-fingerprint-04f3-0c4b
+Version: 1.0.2
 Section: utils
 Priority: optional
 Architecture: amd64
 Depends: libfprint-2-tod1, fprintd
 Maintainer: Local Administrator <root@localhost>
-Description: Local ELAN 04f3:0c4b TOD fingerprint driver
+Description: ELAN 04f3:0c4b TOD fingerprint driver
  Provides the proprietary ELAN TOD driver required for USB fingerprint
- reader 04f3:0c4b together with an isolated private libcrypto.so.1.1.
+ reader 04f3:0c4b together with an isolated libcrypto.so.1.1 compatibility
+ library under /opt/elan-fingerprint/lib.
  .
- The legacy OpenSSL library is kept under /opt and is used only through
- the driver's private RUNPATH. PAM configuration is not modified.
+ The legacy OpenSSL library is used only through the driver's RUNPATH.
+ PAM configuration is not modified.
