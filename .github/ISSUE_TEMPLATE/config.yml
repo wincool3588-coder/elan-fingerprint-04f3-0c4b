@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/wincool3588-coder/elan-fingerprint-04f3-0c4b/security
+    about: Do not report vulnerabilities publicly. Use the repository Security area and follow SECURITY.md.
+  - name: Documentation
+    url: https://github.com/wincool3588-coder/elan-fingerprint-04f3-0c4b#readme
+    about: Check the English canonical and Russian documentation before opening an issue.
