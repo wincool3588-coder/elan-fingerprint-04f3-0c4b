@@ -140,4 +140,6 @@ Material authored specifically for this repository — including original docume
 
 This does **not** mean Apache-2.0 applies to third-party binary components. In particular, the proprietary ELAN TOD driver and `libcrypto.so.1.1` remain subject to their own applicable licensing terms and are described separately in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
 
+For `libcrypto.so.1.1`, [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) records the exact Ubuntu binary package, verified checksums, corresponding Ubuntu source package, and the applicable OpenSSL 1.1.1f licensing terms. OpenSSL 1.1.1f is covered by both the **OpenSSL License and Original SSLeay License**; it is not relicensed under Apache-2.0. The complete upstream license text and provenance record are also included in the package tree.
+
 Until redistribution rights for the ELAN TOD binary are confirmed, the presence of a copy of the binary or package in this repository must not be interpreted as a grant of rights to that component by the repository author.
