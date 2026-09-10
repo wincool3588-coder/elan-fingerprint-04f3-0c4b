@@ -26,15 +26,54 @@ Source/reference, использованные при восстановлени
 
 ## Compatibility library OpenSSL 1.1
 
-Package содержит только `libcrypto.so.1.1`, извлечённую из официального Ubuntu Focal package `libssl1.1`, вместо глобальной установки устаревшего package. Используемый binary имеет SHA256:
+Package содержит только `libcrypto.so.1.1`, изолированную в `/opt/elan-fingerprint/lib` и выбираемую private RUNPATH ELAN driver. Она извлечена из официального amd64 package Ubuntu 20.04 LTS (Focal):
+
+```text
+libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
+SHA256: 7cf39d70a639017d1dd7c8d36daa2258063608688e449fddf40ffdd46f992a78
+```
+
+Bundled library имеет SHA256:
 
 ```text
 bf99926de2ce739d3fdccc4a551d97d64aac6e968589aaad9dc4ac8d143b519a
 ```
 
-Он изолирован в `/opt/elan-fingerprint/lib` и выбирается private RUNPATH ELAN driver.
+SHA256 bundled library был отдельно проверен после извлечения из указанного Ubuntu binary package.
 
-OpenSSL является сторонним программным обеспечением и **не перелицензируется** под Apache-2.0 этого репозитория. Точные условия лицензии и соответствующие обязательства по source/redistribution необходимо определить по metadata Ubuntu Focal `libssl1.1` и соответствующему source package, прежде чем считать binary package этого репозитория пригодным для общего перераспространения.
+Соответствующий Ubuntu source package:
+
+```text
+openssl 1.1.1f-1ubuntu2.24
+```
+
+Ubuntu публикует соответствующие source materials:
+
+```text
+openssl_1.1.1f.orig.tar.gz
+SHA256: 186c6bfe6ecfba7a5b48c47f8a1673d0f3b0e5ba2e25602dd23b629975da3f35
+
+openssl_1.1.1f-1ubuntu2.24.debian.tar.xz
+SHA256: 66b1a31642710d386b6896e2e7bea0bd3138d94277c894f871ccaa52bad07c04
+
+openssl_1.1.1f-1ubuntu2.24.dsc
+SHA256: f9b93b532511ee24b3e0160c0c7549d3e3123c9e2d9c5c6da0e6de2f582eccd3
+```
+
+OpenSSL 1.1.1f распространяется по **OpenSSL License и Original SSLeay License; применяются обе лицензии**. Эти лицензии разрешают binary redistribution при сохранении соответствующих copyright notices, attribution и disclaimer. OpenSSL остаётся сторонним программным обеспечением и **не перелицензируется** под Apache-2.0 этого репозитория.
+
+Package содержит полный upstream license text OpenSSL 1.1.1f и сведения о provenance по путям:
+
+```text
+/usr/share/doc/elan-fingerprint-04f3-0c4b-local/third-party/openssl/LICENSE
+/usr/share/doc/elan-fingerprint-04f3-0c4b-local/third-party/openssl/SOURCE
+```
+
+В этих материалах сохранены требуемые acknowledgements, включая attribution OpenSSL Project и Eric Young.
+
+Официальная информация о source package: <https://launchpad.net/ubuntu/+source/openssl/1.1.1f-1ubuntu2.24>
+
+Upstream license source: <https://github.com/openssl/openssl/blob/OpenSSL_1_1_1f/LICENSE>
 
 ## Документация и packaging репозитория
 
@@ -44,4 +83,4 @@ OpenSSL является сторонним программным обеспе�
 
 ## Отслеживание юридического статуса
 
-Оставшиеся вопросы по перераспространению отслеживаются в GitHub Issue #1. Пока они не решены, release artifacts, содержащие ELAN TOD binary, следует считать имеющими неопределённый third-party redistribution status.
+Оставшиеся вопросы по перераспределению отслеживаются в GitHub Issue #1. Для OpenSSL 1.1 compatibility component теперь документированы provenance, соответствующий source package и bundled license notices. Статус proprietary ELAN TOD binary остаётся не определённым, поэтому release artifacts, содержащие его, по-прежнему следует считать имеющими неопределённый third-party redistribution status.
