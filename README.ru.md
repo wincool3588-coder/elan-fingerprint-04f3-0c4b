@@ -2,7 +2,7 @@
 
 [English](README.md) | [Русский](README.ru.md)
 
-Локальный Debian-пакет и документация для USB-сканера отпечатков пальцев **ELAN 04f3:0c4b**, проверенные на **Lenovo ThinkBook 14 G2 ARE** под **Ubuntu 26.04 LTS**.
+Debian-пакет и документация для USB-сканера отпечатков пальцев **ELAN 04f3:0c4b**, проверенные на **Lenovo ThinkBook 14 G2 ARE** под **Ubuntu 26.04 LTS**.
 
 > [!IMPORTANT]
 > Это не официальный пакет Ubuntu, Lenovo или ELAN. В состав `.deb` входят сторонний проприетарный бинарный модуль ELAN TOD и изолированная библиотека совместимости `libcrypto.so.1.1`. См. [`THIRD_PARTY_NOTICES.ru.md`](THIRD_PARTY_NOTICES.ru.md).
@@ -17,7 +17,7 @@
 - `libfprint-2-2`: `1:1.95.1+tod1-0ubuntu2`
 - `libfprint-2-tod1`: `1:1.95.1+tod1-0ubuntu2`
 - `libpam-fprintd`: `1.94.5-4`
-- Локальный пакет: `elan-fingerprint-04f3-0c4b-local 1.0.0+local1`
+- Пакет: `elan-fingerprint-04f3-0c4b 1.0.2`
 
 Успешно проверены регистрация отпечатка, `fprintd-verify`, `sudo`, экран блокировки GNOME, графический вход в систему и резервная аутентификация паролем.
 
@@ -46,20 +46,22 @@ lsusb | grep -i '04f3:0c4b'
 Проверьте SHA256 скачанного `.deb`:
 
 ```bash
-sha256sum elan-fingerprint-04f3-0c4b-local_1.0.0+local1_amd64.deb
+sha256sum elan-fingerprint-04f3-0c4b_1.0.2_amd64.deb
 ```
 
 Ожидаемая контрольная сумма:
 
 ```text
-9893258dfeb04259312fccb465ac372440e2e972787966794e63b87c9c520b44
+b287d4e3f9ded1ffed7f69e144919bad5e929d205ccc241b42acfd40e51b4504
 ```
 
 Установите пакет:
 
 ```bash
-sudo dpkg -i ./elan-fingerprint-04f3-0c4b-local_1.0.0+local1_amd64.deb
+sudo dpkg -i ./elan-fingerprint-04f3-0c4b_1.0.2_amd64.deb
 ```
+
+Версия `1.0.2` заменяет прежний пакет с именем `elan-fingerprint-04f3-0c4b-local`; для перехода со старого имени в метаданных пакета указаны `Replaces` и `Conflicts`.
 
 Пакет устанавливает драйвер TOD, изолированную `libcrypto.so.1.1`, символическую ссылку на драйвер TOD и правило udev. **Конфигурацию PAM пакет не изменяет.**
 
@@ -104,7 +106,7 @@ sudo pam-auth-update
 7. Удалите пакет вместе с его конфигурацией:
 
 ```bash
-sudo apt purge elan-fingerprint-04f3-0c4b-local
+sudo apt purge elan-fingerprint-04f3-0c4b
 ```
 
 8. Проверьте файлы, принадлежащие пакету. Локальные резервные файлы в `/opt/elan-fingerprint/docs` могут остаться, поскольку пакет ими не владеет. Не удаляйте весь каталог `/opt/elan-fingerprint` вслепую.
@@ -140,6 +142,6 @@ sudo apt purge elan-fingerprint-04f3-0c4b-local
 
 Это **не означает**, что Apache 2.0 распространяется на сторонние бинарные компоненты. В частности, проприетарный драйвер ELAN TOD и `libcrypto.so.1.1` сохраняют собственные применимые условия лицензирования и отдельно описаны в [`THIRD_PARTY_NOTICES.ru.md`](THIRD_PARTY_NOTICES.ru.md).
 
-Для `libcrypto.so.1.1` в [`THIRD_PARTY_NOTICES.ru.md`](THIRD_PARTY_NOTICES.ru.md) теперь зафиксированы точный пакет Ubuntu, контрольные суммы, соответствующий пакет с исходным кодом и применимые лицензионные условия OpenSSL 1.1.1f. Полный текст лицензии и сведения о происхождении также включены в дерево пакета.
+Для `libcrypto.so.1.1` в [`THIRD_PARTY_NOTICES.ru.md`](THIRD_PARTY_NOTICES.ru.md) зафиксированы точный пакет Ubuntu, контрольные суммы, соответствующий пакет с исходным кодом и применимые лицензионные условия OpenSSL 1.1.1f. Полный текст лицензии и сведения о происхождении также включены в дерево пакета.
 
 До подтверждения прав на распространение бинарного модуля ELAN TOD наличие его копии или пакета в этом репозитории не следует трактовать как предоставление каких-либо прав на этот компонент со стороны автора репозитория.
