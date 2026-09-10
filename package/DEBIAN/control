@@ -4,6 +4,8 @@ Section: utils
 Priority: optional
 Architecture: amd64
 Depends: libfprint-2-tod1, fprintd
+Replaces: elan-fingerprint-04f3-0c4b-local (<< 1.0.2)
+Conflicts: elan-fingerprint-04f3-0c4b-local (<< 1.0.2)
 Maintainer: Local Administrator <root@localhost>
 Description: ELAN 04f3:0c4b TOD fingerprint driver
  Provides the proprietary ELAN TOD driver required for USB fingerprint
