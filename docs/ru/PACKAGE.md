@@ -33,7 +33,7 @@ fprintd
 
 Файл в `/usr/lib/x86_64-linux-gnu/libfprint-2/tod-1/` является символической ссылкой на `/opt/elan-fingerprint/driver/libfprint-2-tod1-elan.so`.
 
-Файлы OpenSSL в `/usr/share/doc/.../third-party/openssl/` содержат полный текст лицензии OpenSSL 1.1.1f и сведения о точном происхождении приватной копии `libcrypto.so.1.1` из бинарного пакета и соответствующего пакета с исходным кодом Ubuntu.
+Файлы OpenSSL в `/usr/share/doc/.../third-party/openssl/` содержат полный текст лицензии OpenSSL 1.1.1f и сведения о точном происхождении включённой в пакет копии `libcrypto.so.1.1` из бинарного пакета и соответствующего пакета с исходным кодом Ubuntu.
 
 ## Контрольные суммы бинарных файлов
 
