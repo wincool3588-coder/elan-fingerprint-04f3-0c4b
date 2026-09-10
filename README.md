@@ -1,8 +1,8 @@
-# ELAN 04f3:0c4b fingerprint support for Ubuntu 26.04
+# ELAN 04f3:0c4b fingerprint support for Ubuntu 26.04 LTS
 
 [English](README.md) | [Русский](README.ru.md)
 
-Local Debian package and documentation for the **ELAN 04f3:0c4b** USB fingerprint reader, tested on a **Lenovo ThinkBook 14 G2 ARE** running **Ubuntu 26.04 Resolute**.
+Debian package and documentation for the **ELAN 04f3:0c4b** USB fingerprint reader, tested on a **Lenovo ThinkBook 14 G2 ARE** running **Ubuntu 26.04 LTS**.
 
 > [!IMPORTANT]
 > This is not an official Ubuntu, Lenovo, or ELAN package. The `.deb` contains a third-party proprietary ELAN TOD binary and a private compatibility copy of `libcrypto.so.1.1`. See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
@@ -11,13 +11,13 @@ Local Debian package and documentation for the **ELAN 04f3:0c4b** USB fingerprin
 
 - Hardware: Lenovo ThinkBook 14 G2 ARE
 - USB ID: `04f3:0c4b Elan Microelectronics Corp. ELAN:Fingerprint`
-- Ubuntu: 26.04 Resolute
+- Ubuntu: 26.04 LTS
 - Kernel: `7.0.0-31-generic`
 - `fprintd`: `1.94.5-4`
 - `libfprint-2-2`: `1:1.95.1+tod1-0ubuntu2`
 - `libfprint-2-tod1`: `1:1.95.1+tod1-0ubuntu2`
 - `libpam-fprintd`: `1.94.5-4`
-- Local package: `elan-fingerprint-04f3-0c4b-local 1.0.0+local1`
+- Package: `elan-fingerprint-04f3-0c4b 1.0.2`
 
 Enrollment, `fprintd-verify`, `sudo`, GNOME lock screen, graphical login, and password fallback were tested successfully.
 
@@ -46,20 +46,22 @@ lsusb | grep -i '04f3:0c4b'
 Check the downloaded `.deb` SHA256:
 
 ```bash
-sha256sum elan-fingerprint-04f3-0c4b-local_1.0.0+local1_amd64.deb
+sha256sum elan-fingerprint-04f3-0c4b_1.0.2_amd64.deb
 ```
 
 Expected:
 
 ```text
-9893258dfeb04259312fccb465ac372440e2e972787966794e63b87c9c520b44
+7550ff3373fa5b1c3ef9f62e51fc7a6ab63c18bd59ec2c8fecbff3b69ee64fe9
 ```
 
 Install the package:
 
 ```bash
-sudo dpkg -i ./elan-fingerprint-04f3-0c4b-local_1.0.0+local1_amd64.deb
+sudo dpkg -i ./elan-fingerprint-04f3-0c4b_1.0.2_amd64.deb
 ```
+
+Version `1.0.2` replaces the legacy package named `elan-fingerprint-04f3-0c4b-local`; the package metadata contains `Replaces` and `Conflicts` entries for the old name.
 
 The package installs the TOD driver, private `libcrypto.so.1.1`, TOD symlink, and udev rule. **It does not modify PAM configuration.**
 
@@ -104,7 +106,7 @@ Enable **Fingerprint authentication** while keeping the existing password method
 7. Purge the package:
 
 ```bash
-sudo apt purge elan-fingerprint-04f3-0c4b-local
+sudo apt purge elan-fingerprint-04f3-0c4b
 ```
 
 8. Check package-owned files. Local backup files under `/opt/elan-fingerprint/docs` may remain because the package does not own them. Do not remove the entire `/opt/elan-fingerprint` tree blindly.

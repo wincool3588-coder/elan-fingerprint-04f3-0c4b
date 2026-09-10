@@ -20,7 +20,7 @@ Please include enough information to reproduce and diagnose the problem:
 - kernel version (`uname -r`)
 - fingerprint reader USB ID (`lsusb`)
 - versions of `fprintd`, `libfprint-2-2`, `libfprint-2-tod1`, and `libpam-fprintd`
-- installed version of `elan-fingerprint-04f3-0c4b-local`
+- installed version of `elan-fingerprint-04f3-0c4b`
 - exact steps that reproduce the issue
 - expected and actual behavior
 - relevant command output or journal excerpts, with personal information removed

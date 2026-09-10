@@ -38,22 +38,26 @@ fprintd-list "$USER"
 
 ## 4. Удалить пакет
 
+Для версии `1.0.2` и новее:
+
 ```bash
-sudo apt purge elan-fingerprint-04f3-0c4b-local
+sudo apt purge elan-fingerprint-04f3-0c4b
 ```
 
 Альтернатива без `purge`:
 
 ```bash
-sudo dpkg -r elan-fingerprint-04f3-0c4b-local
+sudo dpkg -r elan-fingerprint-04f3-0c4b
 ```
 
 `purge` предпочтительнее для полного удаления, поскольку правило udev является конфигурационным файлом пакета (`conffile`).
 
+Если у вас всё ещё установлен исторический пакет `1.0.0+local1`, его имя — `elan-fingerprint-04f3-0c4b-local`.
+
 ## 5. Проверить результат
 
 ```bash
-dpkg-query -W elan-fingerprint-04f3-0c4b-local
+dpkg-query -W elan-fingerprint-04f3-0c4b
 ls -la /usr/lib/x86_64-linux-gnu/libfprint-2/tod-1/
 test ! -e /etc/udev/rules.d/60-libfprint-2-tod1-elan.rules && echo 'udev rule removed'
 test ! -e /opt/elan-fingerprint/driver/libfprint-2-tod1-elan.so && echo 'driver removed'
@@ -86,7 +90,7 @@ sudo rm -rf /opt/elan-fingerprint
  -> проверить sudo с паролем
  -> проверить экран блокировки с паролем
  -> при необходимости удалить зарегистрированные отпечатки
- -> apt purge elan-fingerprint-04f3-0c4b-local
+ -> apt purge elan-fingerprint-04f3-0c4b
  -> проверить оставшиеся файлы
  -> отдельно решить, что делать с локальными резервными файлами
 ```

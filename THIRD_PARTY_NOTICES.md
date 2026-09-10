@@ -14,11 +14,13 @@ It does **not** relicense third-party software or binary components. Each third-
 
 `libfprint-2-tod1-elan.so` is a proprietary/redistributed binary associated with ELAN/Lenovo fingerprint support. It is **not authored by this repository**, is not covered by this repository's Apache-2.0 license, and is not claimed to be open-source.
 
-The working binary used for package `1.0.0+local1` has SHA256:
+The working binary used for package `1.0.2` has SHA256:
 
 ```text
 be47d4e63bdb541397d1a0d853115d034c36179580aade16e3b52bdcd1dbc3f0
 ```
+
+This is the same ELAN TOD binary payload used in the previously published `1.0.0+local1` package.
 
 Source/reference used during recovery work: TonyHoyle's `libfprint-2-tod1-elan` repository and the `Abishek-Pechiappan/libfprint-elan-04f3-0c4b-tod` device-specific guide.
 
@@ -65,8 +67,8 @@ OpenSSL 1.1.1f is distributed under the **OpenSSL License and Original SSLeay Li
 The package ships the complete upstream OpenSSL 1.1.1f license text and provenance information at:
 
 ```text
-/usr/share/doc/elan-fingerprint-04f3-0c4b-local/third-party/openssl/LICENSE
-/usr/share/doc/elan-fingerprint-04f3-0c4b-local/third-party/openssl/SOURCE
+/usr/share/doc/elan-fingerprint-04f3-0c4b/third-party/openssl/LICENSE
+/usr/share/doc/elan-fingerprint-04f3-0c4b/third-party/openssl/SOURCE
 ```
 
 The required acknowledgements are retained with those materials, including attribution to the OpenSSL Project and Eric Young.
